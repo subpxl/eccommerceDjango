@@ -1,0 +1,42 @@
+
+{% extends 'seller/base.html' %} 
+
+{% load static %}
+
+{% block content %}
+{% include 'seller/includes/navbar.html' %}
+
+<main class="container mx-auto ">
+    <div class="login-popup mx-auto  border p-3 ">
+                <h2 class="text-center">Sign In</h2>
+
+                        {% if mobileNumber is not Null %}
+                            <form action="{% url 'verifyotp' %}" method="post">
+                        <div class="form-group">
+                        {% csrf_token   %}
+                        <input value="{{ mobileNumber }}" disabled   type="number" class="form-control border border-primary" name="mobileNumber" id="mobileNumber" required="">
+                        <label>Please Enter Otp</label>
+                        <input     type="number" class="form-control border border-primary" name="otp" id="otp" required="">
+                    </div>
+                    <button class="w-100 btn btn-primary" type="submit">Get Otp</button>
+                </form>
+                        {% else %}
+                            <form action="{% url 'login' %}" method="post">
+                        <div class="form-group">
+                        {% csrf_token   %}
+                        <label>Enter your mobile number</label>
+                        <input     type="number" class="form-control border border-primary" name="mobileNumber" id="mobileNumber" required="">
+
+                    </div>
+                    <button class="w-100 btn btn-primary" type="submit">Get Otp</button>
+                </form>
+
+                        {% endif %}
+
+            
+
+        </div>
+    <button title="Close (Esc)" type="button" class="mfp-close">×</button></div>
+</main>
+
+{% endblock %}

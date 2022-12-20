@@ -1,0 +1,28 @@
+
+{% extends 'seller/base.html' %} 
+
+{% load static %}
+
+{% block content %}
+{% include 'seller/includes/navbar.html' %}
+
+<main class="container mx-auto ">
+    <div class="login-popup mx-auto  border p-3 ">
+        <h2 class="text-center">Verify OTP</h2>
+
+        <form action="/verifyotp" method="post">
+
+            <div class="form-group">
+                {% csrf_token   %}
+                <label>Please Enter OTP</label>
+                <input   type="number" class="form-control border border-primary" name="username" id="username" required="">
+            </div>
+            <button class="w-100 btn btn-primary" type="submit">Verify OTP  </button>
+
+        </form>
+
+        </div>
+    <button title="Close (Esc)" type="button" class="mfp-close">×</button></div>
+</main>
+
+{% endblock %}
